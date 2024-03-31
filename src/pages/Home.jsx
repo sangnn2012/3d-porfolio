@@ -12,7 +12,9 @@ import Plane from '../models/Plane';
 //     </div>
 
 const Home = () => {
-    const [isRotate, setIsRotating] = useState(false);
+    const [currentStage, setCurrentStage] = useState(1);
+    const [isRotating, setIsRotating] = useState(false);
+    const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
     const adjustIslandForScreenSize = () => {
         let screenScale = null, 
@@ -40,13 +42,13 @@ const Home = () => {
         return [screenScale, screenPosition];
     }
 
-    const [islandScale, isLandPosition, isLandRotation] = adjustIslandForScreenSize();
+    const [islandScale, isLandPosition] = adjustIslandForScreenSize();
     const [planeScale, planePosition] = adjustPlaneForScreenSize();
 
     return (
         <section className="w-full h-screen relative">
             <Canvas 
-                className={`w-full h-screen bg-transparent ${isRotate ? 'cursor-grabbing' : 'cursor-grab'}` }
+                className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}` }
                 camera={{ near: 0.1, far: 1000 }}
             >
                 <Suspense fallback={<Loader />}>
@@ -67,13 +69,15 @@ const Home = () => {
                     <Island 
                         position={isLandPosition}
                         scale={islandScale}
-                        rotation={isLandRotation}
+                        isRotating={isRotating}
+                        setIsRotating={setIsRotating}
+                        setCurrentStage={setCurrentStage}
                     />
                     <Plane 
                         position={planePosition}
                         scale={planeScale}
                         setIsRotating={setIsRotating}
-                        rotation={[0, 20, 0]}
+                        rotation={[0, 20.1, 0]}
                     />
                 </Suspense>
             </Canvas>
