@@ -36,7 +36,7 @@ const Home = () => {
             screenPosition = [0, -1.5, 0];
         } else {
             screenScale = [3, 3, 3];
-            screenPosition = [0, -4, -5];
+            screenPosition = [0, -1, -5];
         }
 
         return [screenScale, screenPosition];
@@ -57,7 +57,13 @@ const Home = () => {
                         position={[1,1,1]}
                         intensity={2}
                     />
-                    <ambientLight intensity={0.2} />
+                    <ambientLight intensity={0.5} />
+                    <spotLight
+                        position={[0, 50, 10]}
+                        angle={0.15}
+                        penumbra={1}
+                        intensity={2}
+                        />
                     <hemisphereLight 
                         skyColor="#b1e1ff" 
                         groundColor="#000000" 
@@ -65,9 +71,10 @@ const Home = () => {
                     />
 
                     <Bird />
-                    <Sky />
+                    <Sky isRotating={isRotating} />
                     <Island 
                         position={isLandPosition}
+                        rotation={[0.1, 4.7077, 0]}
                         scale={islandScale}
                         isRotating={isRotating}
                         setIsRotating={setIsRotating}
@@ -76,7 +83,7 @@ const Home = () => {
                     <Plane 
                         position={planePosition}
                         scale={planeScale}
-                        setIsRotating={setIsRotating}
+                        isRotating={isRotating}
                         rotation={[0, 20.1, 0]}
                     />
                 </Suspense>
