@@ -5,10 +5,9 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 import CTA from '../components/CTA';
-import constants from '../assets/constants/index';
+import { skills, experiences } from '../assets/constants/index';
 
 const About = () => {
-    const { skills, experiences } = constants;
     return (
         <section className="max-container">
             {/* Header */}

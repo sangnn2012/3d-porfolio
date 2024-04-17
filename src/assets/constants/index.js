@@ -227,4 +227,4 @@ const projects = [
     }
 ];
 
-export default { skills, socialLinks, projects, experiences };
+export { skills, socialLinks, projects, experiences };
